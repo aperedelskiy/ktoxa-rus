@@ -6,8 +6,9 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 <section id="hero" class="hero section" style="position: relative; min-height: 80vh; display: flex; align-items: center; overflow: hidden;">
 
   <?php $APPLICATION->IncludeComponent("bitrix:news.list", "slider", [
-    "IBLOCK_TYPE"          => "news",
+    "IBLOCK_TYPE"          => "slider",
     "IBLOCK_ID"            => IBLOCK_ID_SLIDER,
+    "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
     "NEWS_COUNT"           => "10",
     "SORT_BY1"             => "SORT",
     "SORT_ORDER1"          => "ASC",
@@ -125,6 +126,7 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
   "IBLOCK_TYPE"          => "news",
   "IBLOCK_ID"            => IBLOCK_ID_NEWS,
   "NEWS_COUNT"           => "4",
+  "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
   "SORT_BY1"             => "ACTIVE_FROM",
   "SORT_ORDER1"          => "DESC",
   "SORT_BY2"             => "SORT",
@@ -146,8 +148,9 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 ], false); ?>
 
 <?php $APPLICATION->IncludeComponent("bitrix:news.list", "cite", [
-  "IBLOCK_TYPE"          => "news",
+  "IBLOCK_TYPE"          => "cite",
   "IBLOCK_ID"            => IBLOCK_ID_CITE,
+  "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
   "NEWS_COUNT"           => "20",
   "SORT_BY1"             => "SORT",
   "SORT_ORDER1"          => "ASC",
@@ -170,8 +173,9 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 
 
 <?php $APPLICATION->IncludeComponent("bitrix:news.list", "gallery", [
-  "IBLOCK_TYPE"          => "news",
+  "IBLOCK_TYPE"          => "media",
   "IBLOCK_ID"            => IBLOCK_ID_MEDIA,
+  "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
   "NEWS_COUNT"           => "6",
   "SORT_BY1"             => "ACTIVE_FROM",
   "SORT_ORDER1"          => "DESC",
@@ -195,8 +199,9 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 
 
 <?php $APPLICATION->IncludeComponent("bitrix:news.list", "partners", [
-  "IBLOCK_TYPE"          => "news",
+  "IBLOCK_TYPE"          => "partners",
   "IBLOCK_ID"            => IBLOCK_ID_PARTNERS,
+  "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
   "NEWS_COUNT"           => "30",
   "SORT_BY1"             => "SORT",
   "SORT_ORDER1"          => "ASC",
