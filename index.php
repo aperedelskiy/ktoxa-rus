@@ -169,114 +169,51 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 ], false); ?>
 
 
-<!-- ======= Gallery Section ======= -->
-<section id="gallery" class="gallery">
-
-  <div class="container" data-aos="fade-up">
-    <div class="section-title">
-      <h2>медиа файлы</h2>
-      <p>Галерея</p>
-    </div>
-  </div>
-
-  <div class="gallery-container">
-    <div class="gallery-grid" id="galleryGrid">
-      <?php $APPLICATION->IncludeComponent("bitrix:news.list", "gallery", [
-        "IBLOCK_TYPE"          => "news",
-        "IBLOCK_ID"            => IBLOCK_ID_MEDIA,
-        "NEWS_COUNT"           => "6",
-        "SORT_BY1"             => "ACTIVE_FROM",
-        "SORT_ORDER1"          => "DESC",
-        "SORT_BY2"             => "SORT",
-        "SORT_ORDER2"          => "ASC",
-        "CHECK_DATES"          => "Y",
-        "DISPLAY_DATE"         => "Y",
-        "DISPLAY_PICTURE"      => "Y",
-        "DISPLAY_PREVIEW_TEXT" => "N",
-        "ACTIVE_DATE_FORMAT"   => "d.m.Y",
-        "DETAIL_URL"           => "/media/#ELEMENT_ID#/",
-        "SET_TITLE"            => "N",
-        "CACHE_TYPE"           => "A",
-        "CACHE_TIME"           => "36000000",
-        "CACHE_GROUPS"         => "Y",
-        "DISPLAY_TOP_PAGER"    => "N",
-        "DISPLAY_BOTTOM_PAGER" => "N",
-        "FIELD_CODE"           => ["", ""],
-        "PROPERTY_CODE"        => ["", ""],
-      ], false); ?>
-    </div>
-
-    <div class="load-more-wrapper">
-      <a href="/media/" class="load-more-btn">Перейти в архив</a>
-    </div>
-  </div>
-</section><!-- End Gallery Section -->
+<?php $APPLICATION->IncludeComponent("bitrix:news.list", "gallery", [
+  "IBLOCK_TYPE"          => "news",
+  "IBLOCK_ID"            => IBLOCK_ID_MEDIA,
+  "NEWS_COUNT"           => "6",
+  "SORT_BY1"             => "ACTIVE_FROM",
+  "SORT_ORDER1"          => "DESC",
+  "SORT_BY2"             => "SORT",
+  "SORT_ORDER2"          => "ASC",
+  "CHECK_DATES"          => "Y",
+  "DISPLAY_DATE"         => "Y",
+  "DISPLAY_PICTURE"      => "Y",
+  "DISPLAY_PREVIEW_TEXT" => "N",
+  "ACTIVE_DATE_FORMAT"   => "d.m.Y",
+  "DETAIL_URL"           => "/media/#ELEMENT_ID#/",
+  "SET_TITLE"            => "N",
+  "CACHE_TYPE"           => "A",
+  "CACHE_TIME"           => "36000000",
+  "CACHE_GROUPS"         => "Y",
+  "DISPLAY_TOP_PAGER"    => "N",
+  "DISPLAY_BOTTOM_PAGER" => "N",
+  "FIELD_CODE"           => ["", ""],
+  "PROPERTY_CODE"        => ["", ""],
+], false); ?>
 
 
+<?php $APPLICATION->IncludeComponent("bitrix:news.list", "partners", [
+  "IBLOCK_TYPE"          => "news",
+  "IBLOCK_ID"            => IBLOCK_ID_PARTNERS,
+  "NEWS_COUNT"           => "30",
+  "SORT_BY1"             => "SORT",
+  "SORT_ORDER1"          => "ASC",
+  "SORT_BY2"             => "ID",
+  "SORT_ORDER2"          => "ASC",
+  "CHECK_DATES"          => "Y",
+  "DISPLAY_DATE"         => "N",
+  "DISPLAY_PICTURE"      => "Y",
+  "DISPLAY_PREVIEW_TEXT" => "N",
+  "SET_TITLE"            => "N",
+  "CACHE_TYPE"           => "A",
+  "CACHE_TIME"           => "36000000",
+  "CACHE_GROUPS"         => "Y",
+  "DISPLAY_TOP_PAGER"    => "N",
+  "DISPLAY_BOTTOM_PAGER" => "N",
+  "FIELD_CODE"           => ["", ""],
+  "PROPERTY_CODE"        => ["LINK", ""],
+], false); ?>
 
-
-<section id="clients" class="clients section bg-white">
-
-
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Сила в единстве!</h2>
-    <p>НАШИ ПАРТНЕРЫ</p>
-  </div>
-
-  <div class="container py-5" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="swiper init-swiper">
-      <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-            "delay": 5000
-          },
-          "slidesPerView": "auto",
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets",
-            "clickable": true
-          },
-          "breakpoints": {
-            "320": {
-              "slidesPerView": 2,
-              "spaceBetween": 40
-            },
-            "480": {
-              "slidesPerView": 3,
-              "spaceBetween": 60
-            },
-            "640": {
-              "slidesPerView": 4,
-              "spaceBetween": 40
-            },
-            "992": {
-              "slidesPerView": 4,
-              "spaceBetween": 40
-            }
-          }
-        }
-      </script>
-      <div class="swiper-wrapper align-items-center">
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/ligabop.jpg" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/obredmvd.jpg" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/mvdrf.jpg" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/gumvd.jpg" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/cultmvdrf.jpg" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/ru-weapon.png" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/rus-obsch.png" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/szkp.png" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/nordman.png" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/bb.png" class="img-fluid" width="160" alt=""></div>
-        <div class="swiper-slide"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/partners/vityazi-otechestva.png" class="img-fluid" width="160" alt=""></div>
-
-      </div>
-      <div class="pt-2 swiper-pagination"></div>
-    </div>
-
-  </div>
-
-</section>
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
