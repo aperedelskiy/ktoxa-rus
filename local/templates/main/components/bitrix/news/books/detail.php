@@ -5,9 +5,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var CBitrixComponentTemplate $this */
 /** @global CMain $APPLICATION */
 $this->setFrameMode(true);
+
 $APPLICATION->IncludeComponent(
     "bitrix:news.detail",
-    "article",
+    "book",
     [
         "DISPLAY_DATE"              => $arParams["DISPLAY_DATE"],
         "DISPLAY_NAME"              => $arParams["DISPLAY_NAME"],
@@ -17,9 +18,6 @@ $APPLICATION->IncludeComponent(
         "IBLOCK_ID"                 => $arParams["IBLOCK_ID"],
         "FIELD_CODE"                => $arParams["DETAIL_FIELD_CODE"],
         "PROPERTY_CODE"             => $arParams["DETAIL_PROPERTY_CODE"],
-        "DETAIL_URL"                => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["detail"],
-        "SECTION_URL"               => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
-        "IBLOCK_URL"                => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"],
         "META_KEYWORDS"             => $arParams["META_KEYWORDS"],
         "META_DESCRIPTION"          => $arParams["META_DESCRIPTION"],
         "BROWSER_TITLE"             => $arParams["BROWSER_TITLE"],
@@ -33,12 +31,9 @@ $APPLICATION->IncludeComponent(
         "CACHE_TYPE"                => $arParams["CACHE_TYPE"],
         "CACHE_TIME"                => $arParams["CACHE_TIME"],
         "CACHE_GROUPS"              => $arParams["CACHE_GROUPS"],
-        "ELEMENT_ID"                => $arResult["VARIABLES"]["ELEMENT_ID"],
-        "ELEMENT_CODE"              => $arResult["VARIABLES"]["ELEMENT_CODE"],
-        "SECTION_ID"                => $arResult["VARIABLES"]["SECTION_ID"],
-        "SECTION_CODE"              => $arResult["VARIABLES"]["SECTION_CODE"],
+        "ELEMENT_CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"],
     ],
     $component
 );
 ?>
-<p class="mt-4"><a href="<?= $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"] ?>"><i class="bi bi-arrow-left"></i> Назад к списку</a></p>
+<p class="mt-4"><a href="../"><i class="bi bi-arrow-left"></i> Назад к списку</a></p>

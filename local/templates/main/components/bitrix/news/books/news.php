@@ -7,7 +7,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $this->setFrameMode(true);
 $APPLICATION->IncludeComponent(
     "bitrix:news.list",
-    "media-list",
+    "books",
     [
         "IBLOCK_TYPE"                     => $arParams["IBLOCK_TYPE"],
         "IBLOCK_ID"                       => $arParams["IBLOCK_ID"],
@@ -18,9 +18,6 @@ $APPLICATION->IncludeComponent(
         "SORT_ORDER2"                     => $arParams["SORT_ORDER2"],
         "FIELD_CODE"                      => $arParams["LIST_FIELD_CODE"],
         "PROPERTY_CODE"                   => $arParams["LIST_PROPERTY_CODE"],
-        "DETAIL_URL"                      => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["detail"],
-        "SECTION_URL"                     => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
-        "IBLOCK_URL"                      => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"],
         "SET_TITLE"                       => $arParams["SET_TITLE"],
         "CACHE_TYPE"                      => $arParams["CACHE_TYPE"],
         "CACHE_TIME"                      => $arParams["CACHE_TIME"],
