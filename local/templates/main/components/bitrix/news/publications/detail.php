@@ -7,7 +7,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $this->setFrameMode(true);
 $APPLICATION->IncludeComponent(
     "bitrix:news.detail",
-    "article",
+    "publication",
     [
         "DISPLAY_DATE"              => $arParams["DISPLAY_DATE"],
         "DISPLAY_NAME"              => $arParams["DISPLAY_NAME"],

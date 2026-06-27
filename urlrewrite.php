@@ -24,4 +24,20 @@ $arUrlRewrite=array (
     'PATH' => '/activity/books/index.php',
     'SORT' => 100,
   ),
+  3 =>
+  array (
+    'CONDITION' => '#^/activity/publications/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/activity/publications/index.php',
+    'SORT' => 100,
+  ),
+  4 =>
+  array (
+    'CONDITION' => '#^/media/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/media/index.php',
+    'SORT' => 100,
+  ),
 );

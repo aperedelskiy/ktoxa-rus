@@ -41,6 +41,7 @@ $APPLICATION->IncludeComponent(
         "PREVIEW_TRUNCATE_LEN"            => $arParams["PREVIEW_TRUNCATE_LEN"],
         "ACTIVE_DATE_FORMAT"              => $arParams["LIST_ACTIVE_DATE_FORMAT"],
         "CHECK_DATES"                     => $arParams["CHECK_DATES"],
+        "INCLUDE_IBLOCK_INTO_CHAIN"       => $arParams["INCLUDE_IBLOCK_INTO_CHAIN"],
     ],
     $component
 );

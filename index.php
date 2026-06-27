@@ -198,7 +198,7 @@ $APPLICATION->SetTitle("Ассоциация РУСЬ");
 ], false); ?>
 
 
-<?php $APPLICATION->IncludeComponent("bitrix:news.list", "partners", [
+<?php $APPLICATION->IncludeComponent("bitrix:news.list", "partners-slider", [
   "IBLOCK_TYPE"          => "partners",
   "IBLOCK_ID"            => IBLOCK_ID_PARTNERS,
   "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
