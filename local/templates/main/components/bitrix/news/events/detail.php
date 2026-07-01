@@ -40,5 +40,3 @@ $APPLICATION->IncludeComponent(
     ],
     $component
 );
-?>
-<p class="mt-4"><a href="<?= $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"] ?>"><i class="bi bi-arrow-left"></i> Назад к списку</a></p>

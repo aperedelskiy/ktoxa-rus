@@ -5,22 +5,19 @@ if (empty($arResult["ID"])) return;
 $this->AddEditAction($arResult['ID'], $arResult['EDIT_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 $this->AddDeleteAction($arResult['ID'], $arResult['DELETE_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), ["CONFIRM" => GetMessage('CT_BNSD_ELEMENT_DELETE_CONFIRM')]);
 
-// Collect image URLs from FILES property (type F, multiple)
 $files = [];
 if (!empty($arResult["PROPERTIES"]["FILES"]["VALUE"])) {
     foreach ((array)$arResult["PROPERTIES"]["FILES"]["VALUE"] as $fileId) {
         if ((int)$fileId > 0) {
             $path = CFile::GetPath((int)$fileId);
-            if ($path) {
-                $files[] = $path;
-            }
+            if ($path) $files[] = $path;
         }
     }
 }
-// Fallback to DETAIL_PICTURE if FILES is empty
 if (empty($files) && !empty($arResult["DETAIL_PICTURE"]["SRC"])) {
     $files[] = $arResult["DETAIL_PICTURE"]["SRC"];
 }
+$initialShow = 8;
 ?>
 
 <section id="gallery" class="gallery" id="<?= $this->GetEditAreaId($arResult['ID']) ?>">
@@ -34,17 +31,19 @@ if (empty($files) && !empty($arResult["DETAIL_PICTURE"]["SRC"])) {
     </div>
 
     <?php if ($arResult["DETAIL_TEXT"] || $arResult["PREVIEW_TEXT"]): ?>
-    <div class="col-12 col-lg-8 mb-4">
-      <?= $arResult["DETAIL_TEXT"] ?: $arResult["PREVIEW_TEXT"] ?>
+    <div class="row">
+      <div class="col-12 col-lg-9 mb-5">
+        <?= $arResult["DETAIL_TEXT"] ?: $arResult["PREVIEW_TEXT"] ?>
+      </div>
     </div>
     <?php endif; ?>
   </div>
 
   <?php if ($files): ?>
   <div class="gallery-container">
-    <div class="row g-3">
+    <div class="row g-3" id="galleryGrid">
       <?php foreach ($files as $i => $src): ?>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item-wrapper">
+      <div class="col-6 col-md-4 col-lg-3 gallery-item-wrapper<?= $i >= $initialShow ? ' d-none gallery-hidden' : '' ?>">
         <div class="gallery-item"
              data-bs-toggle="modal"
              data-bs-target="#galleryModal"
@@ -60,9 +59,14 @@ if (empty($files) && !empty($arResult["DETAIL_PICTURE"]["SRC"])) {
       </div>
       <?php endforeach; ?>
     </div>
+
+    <?php if (count($files) > $initialShow): ?>
+    <div class="load-more-wrapper text-center mt-4">
+      <button class="load-more-btn" id="galleryLoadMoreBtn">загрузить еще</button>
+    </div>
+    <?php endif; ?>
   </div>
 
-  <!-- Bootstrap Modal Lightbox -->
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content bg-transparent border-0">
@@ -106,15 +110,26 @@ if (empty($files) && !empty($arResult["DETAIL_PICTURE"]["SRC"])) {
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     var modalEl = document.getElementById('galleryModal');
-    if (!modalEl) return;
-    modalEl.addEventListener('show.bs.modal', function(e) {
-      var trigger = e.relatedTarget;
-      var index = trigger ? parseInt(trigger.getAttribute('data-bs-slide-to'), 10) : 0;
-      var carousel = bootstrap.Carousel.getOrCreateInstance(
-        document.getElementById('galleryCarousel'), { interval: false }
-      );
-      carousel.to(index);
-    });
+    if (modalEl) {
+      modalEl.addEventListener('show.bs.modal', function(e) {
+        var index = e.relatedTarget ? parseInt(e.relatedTarget.getAttribute('data-bs-slide-to'), 10) : 0;
+        bootstrap.Carousel.getOrCreateInstance(
+          document.getElementById('galleryCarousel'), { interval: false }
+        ).to(index);
+      });
+    }
+    var loadMoreBtn = document.getElementById('galleryLoadMoreBtn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        var hidden = document.querySelectorAll('#galleryGrid .gallery-hidden');
+        Array.prototype.slice.call(hidden, 0, 4).forEach(function(el) {
+          el.classList.remove('d-none', 'gallery-hidden');
+        });
+        if (!document.querySelector('#galleryGrid .gallery-hidden')) {
+          loadMoreBtn.style.display = 'none';
+        }
+      });
+    }
   });
   </script>
   <?php endif; ?>

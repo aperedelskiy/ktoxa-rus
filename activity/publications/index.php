@@ -68,7 +68,7 @@ $APPLICATION->SetTitle("Публикации");
           "LIST_FIELD_CODE"           => ["", ""],
           "LIST_PROPERTY_CODE"        => ["", ""],
           "DETAIL_FIELD_CODE"         => ["", ""],
-          "DETAIL_PROPERTY_CODE"      => ["", ""],
+          "DETAIL_PROPERTY_CODE"      => ["AUTHOR", "FILES", ""],
         ], false); ?>
 
       </div>

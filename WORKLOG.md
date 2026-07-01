@@ -212,6 +212,54 @@ define("IBLOCK_ID_PUBLICATIONS", 4);
 
 ---
 
+---
+
+## 2026-06-30 — Detail Page Unification & Gallery Improvements
+
+### Task 1: Детальные страницы (единый стиль)
+
+Созданы/обновлены шаблоны детальных страниц. Структура: section-title (дата + название), текст в `col-lg-9`, фото-галерея внизу с Bootstrap Modal lightbox.
+
+**Новые файлы:**
+- `local/templates/main/components/bitrix/news.detail/article/template.php` — детальная для Событий
+  - Поле FILES (тип F) → сетка превью + лайтбокс
+  - Ссылка «Назад к событиям» → `/news/`
+
+**Обновлены:**
+- `local/templates/main/components/bitrix/news.detail/publication/template.php`
+  - Добавлено поле AUTHOR (property)
+  - Добавлена галерея FILES с лайтбоксом
+  - Ссылка «Назад к публикациям» → `/activity/publications/`
+- `local/templates/main/components/bitrix/news.detail/media/template.php`
+  - Изменено `col-lg-8` → `col-lg-9` для текста
+  - Добавлена кнопка «загрузить еще» (показывает +4 фото)
+
+**Обновлены параметры компонентов:**
+- `news/index.php` — `DETAIL_PROPERTY_CODE => ["FILES", ""]`
+- `activity/publications/index.php` — `DETAIL_PROPERTY_CODE => ["AUTHOR", "FILES", ""]`
+
+### Task 2: Кнопка «Загрузить еще» в галерее
+
+Реализована во всех трёх detail-шаблонах (article, publication, media):
+- Изначально показываются 8 фото (`$initialShow = 8`)
+- Скрытые элементы получают классы `d-none gallery-hidden`
+- JS: клик по кнопке показывает по 4 фото, при исчерпании — скрывает кнопку
+
+### Task 3: Раздел «События» — пагинатор
+
+`news.list/events/template.php` — исправлена логика footer:
+- При `DISPLAY_BOTTOM_PAGER = "Y"` (страница `/news/`) → показывает `NAV_STRING` пагинатора
+- При `DISPLAY_BOTTOM_PAGER != "Y"` (главная, 4 элемента) → показывает «Перейти в архив»
+
+### Task 4: Раздел «Медиа» — обрезка фото + пагинатор
+
+`news.list/media-list/template.php`:
+- Превью обёрнуто в `<a href>` с `overflow: hidden; min-height: 180px`
+- Изображение получает `object-fit: cover; height: 100%` — корректная обрезка
+- Пагинатор отображается при `DISPLAY_BOTTOM_PAGER = "Y"` и наличии `NAV_STRING`
+
+---
+
 ## Notes
 
 - `symbols.html` and `blago.html` links in `about/index.php` were left as-is — these design pages are not in the implementation scope and have no mapped URLs.

@@ -6,7 +6,7 @@ $APPLICATION->SetTitle("События");
     <?php $APPLICATION->IncludeComponent("bitrix:news", "events", [
       "IBLOCK_TYPE"               => "news",
       "IBLOCK_ID"                 => IBLOCK_ID_NEWS,
-      "NEWS_COUNT"                => "20",
+      "NEWS_COUNT"                => "2",
       "SORT_BY1"                  => "ACTIVE_FROM",
       "SORT_ORDER1"               => "DESC",
       "SORT_BY2"                  => "SORT",
@@ -57,7 +57,7 @@ $APPLICATION->SetTitle("События");
       "LIST_FIELD_CODE"           => ["", ""],
       "LIST_PROPERTY_CODE"        => ["", ""],
       "DETAIL_FIELD_CODE"         => ["", ""],
-      "DETAIL_PROPERTY_CODE"      => ["", ""],
+      "DETAIL_PROPERTY_CODE"      => ["FILES", ""],
     ], false); ?>
 
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

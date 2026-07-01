@@ -1583,6 +1583,66 @@ section,
   transform: scale(0.97);
 }
 
+/* Bitrix пагинатор */
+.bx-pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.bx-pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bx-pagination li a,
+.bx-pagination li span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 2px solid #962129;
+  border-radius: 10px;
+  color: #000;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s;
+  background: none;
+}
+
+.bx-pagination li a:hover {
+  background: #962129;
+  color: #fff;
+}
+
+.bx-pagination li.bx-active span,
+.bx-pagination li.bx-active a {
+  background: #962129;
+  color: #fff;
+  pointer-events: none;
+}
+
+.bx-pagination li.disabled span,
+.bx-pagination li.bx-pag-disabled span {
+  border-color: #ccc;
+  color: #aaa;
+  pointer-events: none;
+}
+
+.bx-pagination li.bx-pagination-left a,
+.bx-pagination li.bx-pagination-right a {
+  font-size: 16px;
+}
+
 /* Адаптивность */
 @media (max-width: 992px) {
   .gallery-grid {

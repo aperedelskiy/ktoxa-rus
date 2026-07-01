@@ -40,13 +40,15 @@ $this->setFrameMode(true);
         </div>
       <?php endforeach; ?>
     </div>
-    <?php if ($arParams["DISPLAY_BOTTOM_PAGER"] && $arResult["NAV_STRING"]): ?>
-      <div class="load-more-wrapper"><?= $arResult["NAV_STRING"] ?></div>
+    <?php if ($arResult["NAV_STRING"]): ?>
+      <div class="bx-pagination-container">
+        <?= $arResult["NAV_STRING"] ?>
+      </div>
+    <?php elseif (empty($arParams["IBLOCK_URL"])): ?>
+      <div class="load-more-wrapper">
+        <a href="/news/" class="load-more-btn">Перейти в архив</a>
+      </div>
     <?php endif; ?>
-
-    <div class="load-more-wrapper">
-      <a href="/news/" class="load-more-btn">Перейти в архив</a>
-    </div>
 
   </div>
 </section>

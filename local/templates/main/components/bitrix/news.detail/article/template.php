@@ -5,8 +5,6 @@ if (empty($arResult["ID"])) return;
 $this->AddEditAction($arResult['ID'], $arResult['EDIT_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 $this->AddDeleteAction($arResult['ID'], $arResult['DELETE_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), ["CONFIRM" => GetMessage('CT_BNSD_ELEMENT_DELETE_CONFIRM')]);
 
-$author = $arResult["PROPERTIES"]["AUTHOR"]["VALUE"] ?? "";
-
 $files = [];
 if (!empty($arResult["PROPERTIES"]["FILES"]["VALUE"])) {
     foreach ((array)$arResult["PROPERTIES"]["FILES"]["VALUE"] as $fileId) {
@@ -31,10 +29,6 @@ $initialShow = 8;
       <?php endif; ?>
       <p><?= htmlspecialcharsbx($arResult["NAME"]) ?></p>
     </div>
-
-    <?php if ($author): ?>
-    <p class="text-muted mb-3"><i class="bi bi-person me-1"></i><?= htmlspecialcharsbx($author) ?></p>
-    <?php endif; ?>
 
     <?php if ($arResult["DETAIL_TEXT"] || $arResult["PREVIEW_TEXT"]): ?>
     <div class="row">
@@ -141,8 +135,8 @@ $initialShow = 8;
   <?php endif; ?>
 
   <div class="container mt-4">
-    <a href="/activity/publications/" class="btn btn-outline-secondary">
-      <i class="bi bi-arrow-left me-1"></i> Назад к публикациям
+    <a href="/news/" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left me-1"></i> Назад к событиям
     </a>
   </div>
 

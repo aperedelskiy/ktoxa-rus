@@ -26,3 +26,9 @@ $this->AddDeleteAction($arResult['ID'], $arResult['DELETE_LINK'], CIBlock::GetAr
     <?= $arResult["DETAIL_TEXT"] ?>
   </div>
 </article>
+
+<div class="mt-4">
+  <a href="/activity/books/" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i> Назад к книгам
+  </a>
+</div>

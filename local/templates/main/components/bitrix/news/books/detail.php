@@ -35,5 +35,3 @@ $APPLICATION->IncludeComponent(
     ],
     $component
 );
-?>
-<p class="mt-4"><a href="../"><i class="bi bi-arrow-left"></i> Назад к списку</a></p>

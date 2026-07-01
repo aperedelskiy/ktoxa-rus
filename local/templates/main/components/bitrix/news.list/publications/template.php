@@ -21,6 +21,8 @@ $this->setFrameMode(true);
     </p>
   </div>
 <?php endforeach; ?>
-<?php if ($arParams["DISPLAY_BOTTOM_PAGER"] && $arResult["NAV_STRING"]): ?>
-  <div class="d-flex justify-content-center mt-3"><?= $arResult["NAV_STRING"] ?></div>
+<?php if ($arResult["NAV_STRING"]): ?>
+  <div class="bx-pagination-container">
+    <?= $arResult["NAV_STRING"] ?>
+  </div>
 <?php endif; ?>
