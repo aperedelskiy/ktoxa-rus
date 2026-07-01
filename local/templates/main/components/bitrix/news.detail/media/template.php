@@ -5,6 +5,16 @@ if (empty($arResult["ID"])) return;
 $this->AddEditAction($arResult['ID'], $arResult['EDIT_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
 $this->AddDeleteAction($arResult['ID'], $arResult['DELETE_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), ["CONFIRM" => GetMessage('CT_BNSD_ELEMENT_DELETE_CONFIRM')]);
 
+$videos = [];
+if (!empty($arResult["PROPERTIES"]["VIDEO_FILES"]["VALUE"])) {
+    foreach ((array)$arResult["PROPERTIES"]["VIDEO_FILES"]["VALUE"] as $fileId) {
+        if ((int)$fileId > 0) {
+            $path = CFile::GetPath((int)$fileId);
+            if ($path) $videos[] = $path;
+        }
+    }
+}
+
 $files = [];
 if (!empty($arResult["PROPERTIES"]["FILES"]["VALUE"])) {
     foreach ((array)$arResult["PROPERTIES"]["FILES"]["VALUE"] as $fileId) {
@@ -39,9 +49,24 @@ $initialShow = 8;
     <?php endif; ?>
   </div>
 
-  <?php if ($files): ?>
+  <?php if ($videos || $files): ?>
   <div class="gallery-container">
     <div class="row g-3" id="galleryGrid">
+
+      <?php foreach ($videos as $videoSrc): ?>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="gallery-item gallery-item--video"
+             data-video-src="<?= htmlspecialcharsbx($videoSrc) ?>">
+          <video src="<?= htmlspecialcharsbx($videoSrc) ?>"
+                 preload="metadata" muted
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"></video>
+          <div class="gallery-overlay gallery-overlay--video">
+            <i class="bi bi-play-circle-fill" style="font-size: 4rem; color: #fff; filter: drop-shadow(0 2px 10px rgba(0,0,0,.7));"></i>
+          </div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+
       <?php foreach ($files as $i => $src): ?>
       <div class="col-6 col-md-4 col-lg-3 gallery-item-wrapper<?= $i >= $initialShow ? ' d-none gallery-hidden' : '' ?>">
         <div class="gallery-item"
@@ -51,13 +76,14 @@ $initialShow = 8;
              style="cursor: pointer;">
           <img src="<?= htmlspecialcharsbx($src) ?>"
                alt="<?= htmlspecialcharsbx($arResult["NAME"]) ?>"
-               class="img-fluid" loading="lazy">
+               class="img-fluid w-100 h-100" style="object-fit:cover;" loading="lazy">
           <div class="gallery-overlay">
             <i class="bi bi-zoom-in display-5"></i>
           </div>
         </div>
       </div>
       <?php endforeach; ?>
+
     </div>
 
     <?php if (count($files) > $initialShow): ?>
@@ -67,6 +93,22 @@ $initialShow = 8;
     <?php endif; ?>
   </div>
 
+  <?php if ($videos): ?>
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-black border-0">
+        <div class="modal-body p-0 position-relative">
+          <video id="videoModalPlayer" controls class="w-100 d-block" style="max-height: 80vh;"></video>
+          <button type="button"
+                  class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                  data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <?php if ($files): ?>
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content bg-transparent border-0">
@@ -106,18 +148,41 @@ $initialShow = 8;
       </div>
     </div>
   </div>
+  <?php endif; ?>
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var modalEl = document.getElementById('galleryModal');
-    if (modalEl) {
-      modalEl.addEventListener('show.bs.modal', function(e) {
+    <?php if ($videos): ?>
+    var videoPlayer  = document.getElementById('videoModalPlayer');
+    var videoModalEl = document.getElementById('videoModal');
+    var videoModal   = new bootstrap.Modal(videoModalEl);
+
+    document.querySelectorAll('.gallery-item--video').forEach(function(el) {
+      el.addEventListener('click', function() {
+        videoPlayer.src = this.getAttribute('data-video-src');
+        videoModal.show();
+        videoPlayer.play();
+      });
+    });
+
+    videoModalEl.addEventListener('hidden.bs.modal', function() {
+      videoPlayer.pause();
+      videoPlayer.removeAttribute('src');
+      videoPlayer.load();
+    });
+    <?php endif; ?>
+
+    <?php if ($files): ?>
+    var galleryModalEl = document.getElementById('galleryModal');
+    if (galleryModalEl) {
+      galleryModalEl.addEventListener('show.bs.modal', function(e) {
         var index = e.relatedTarget ? parseInt(e.relatedTarget.getAttribute('data-bs-slide-to'), 10) : 0;
         bootstrap.Carousel.getOrCreateInstance(
           document.getElementById('galleryCarousel'), { interval: false }
         ).to(index);
       });
     }
+
     var loadMoreBtn = document.getElementById('galleryLoadMoreBtn');
     if (loadMoreBtn) {
       loadMoreBtn.addEventListener('click', function() {
@@ -130,6 +195,7 @@ $initialShow = 8;
         }
       });
     }
+    <?php endif; ?>
   });
   </script>
   <?php endif; ?>

@@ -13,7 +13,7 @@ $APPLICATION->SetTitle("Медиа");
     </div>
 
     <?php $APPLICATION->IncludeComponent("bitrix:news", "media", [
-      "IBLOCK_TYPE"               => "news",
+      "IBLOCK_TYPE"               => "media",
       "IBLOCK_ID"                 => IBLOCK_ID_MEDIA,
       "NEWS_COUNT"                => "10",
       "SORT_BY1"                  => "ACTIVE_FROM",
@@ -65,7 +65,7 @@ $APPLICATION->SetTitle("Медиа");
       "LIST_FIELD_CODE"           => ["", ""],
       "LIST_PROPERTY_CODE"        => ["", ""],
       "DETAIL_FIELD_CODE"         => ["", ""],
-      "DETAIL_PROPERTY_CODE"      => ["FILES", ""],
+      "DETAIL_PROPERTY_CODE"      => ["FILES", "VIDEO_FILES", ""],
     ], false); ?>
 
   </div>
