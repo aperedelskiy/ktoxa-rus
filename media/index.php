@@ -5,13 +5,6 @@ $APPLICATION->SetTitle("Медиа");
 <section class="container-fluid py-5 bg-light" id="media">
   <div class="container py-5">
 
-    <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <h2>Медиа</h2>
-        <p>Галерея</p>
-      </div>
-    </div>
-
     <?php $APPLICATION->IncludeComponent("bitrix:news", "media", [
       "IBLOCK_TYPE"               => "media",
       "IBLOCK_ID"                 => IBLOCK_ID_MEDIA,

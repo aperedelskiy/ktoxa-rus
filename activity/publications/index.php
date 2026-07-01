@@ -8,13 +8,6 @@ $APPLICATION->SetTitle("Публикации");
 
       <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
 
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Деятельность</h2>
-            <p>Публикации</p>
-          </div>
-        </div>
-
         <?php $APPLICATION->IncludeComponent("bitrix:news", "publications", [
           "IBLOCK_TYPE"               => "publications",
           "IBLOCK_ID"                 => IBLOCK_ID_PUBLICATIONS,

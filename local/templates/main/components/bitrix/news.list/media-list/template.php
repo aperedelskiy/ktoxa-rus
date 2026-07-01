@@ -5,6 +5,13 @@
 /** @var CBitrixComponentTemplate $this */
 $this->setFrameMode(true);
 ?>
+<div class="container" data-aos="fade-up">
+  <div class="section-title">
+    <h2>Медиа</h2>
+    <p>Галерея</p>
+  </div>
+</div>
+
 <div class="row g-4">
   <?php foreach ($arResult["ITEMS"] as $arItem):
     $this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));

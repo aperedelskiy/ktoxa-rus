@@ -1583,6 +1583,34 @@ section,
   transform: scale(0.97);
 }
 
+/* Видео-элемент в галерее */
+.gallery-item--video {
+  cursor: pointer;
+  background: #000;
+  isolation: isolate;
+}
+
+.gallery-item--video video {
+  border-radius: inherit;
+}
+
+.gallery-overlay--video {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item--video:hover .gallery-overlay--video {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item--video:hover .gallery-overlay--video i {
+  transform: scale(1.1);
+}
+
+.gallery-overlay--video i {
+  transition: transform 0.2s;
+}
+
 /* Bitrix пагинатор */
 .bx-pagination-container {
   display: flex;
