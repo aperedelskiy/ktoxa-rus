@@ -38,7 +38,7 @@ $initialShow = 8;
 
     <?php if ($arResult["DETAIL_TEXT"] || $arResult["PREVIEW_TEXT"]): ?>
     <div class="row">
-      <div class="col-12 col-lg-9 mb-5">
+      <div class="col-12 col-lg-9 mb-5 detail-content">
         <?= $arResult["DETAIL_TEXT"] ?: $arResult["PREVIEW_TEXT"] ?>
       </div>
     </div>

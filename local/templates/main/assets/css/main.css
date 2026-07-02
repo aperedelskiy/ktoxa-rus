@@ -1611,6 +1611,12 @@ section,
   transition: transform 0.2s;
 }
 
+/* Изображения в теле детальных страниц */
+.detail-content img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Bitrix пагинатор */
 .bx-pagination-container {
   display: flex;
